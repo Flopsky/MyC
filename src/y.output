@@ -1,0 +1,1700 @@
+Terminaux inutilisés dans la grammaire
+
+    DOT
+    ARR
+
+
+État 91 conflits: 1 décalage/réduction
+
+
+Grammaire
+
+    0 $accept: prog $end
+
+    1 prog: func_list
+
+    2 func_list: func_list fun
+    3          | fun
+
+    4 fun: type fun_head fun_body
+
+    5 fun_head: ID PO PF
+    6         | ID PO params PF
+
+    7 params: type ID vir params
+    8       | type ID
+
+    9 vlist: vlist vir ID
+   10      | ID
+
+   11 vir: VIR
+
+   12 fun_body: AO block AF
+
+   13 block: decl_list inst_list
+
+   14 decl_list: decl_list decl
+   15          | ε
+
+   16 decl: var_decl PV
+
+   17 var_decl: type vlist
+
+   18 type: typename
+
+   19 typename: TINT
+   20         | VOID
+
+   21 inst_list: inst inst_list
+   22          | inst
+
+   23 pv: PV
+
+   24 inst: exp pv
+   25     | ao block af
+   26     | aff pv
+   27     | ret pv
+   28     | cond
+   29     | loop
+   30     | pv
+
+   31 ao: AO
+
+   32 af: AF
+
+   33 aff: ID EQ exp
+
+   34 ret: RETURN exp
+   35    | RETURN PO PF
+
+   36 cond: if bool_cond inst elsop
+
+   37 elsop: else inst
+   38      | ε
+
+   39 bool_cond: PO exp PF
+
+   40 if: IF
+
+   41 else: ELSE
+
+   42 loop: while while_cond inst
+
+   43 while_cond: PO exp PF
+
+   44 while: WHILE
+
+   45 exp: MOINS exp
+   46    | exp PLUS exp
+   47    | exp MOINS exp
+   48    | exp STAR exp
+   49    | exp DIV exp
+   50    | PO exp PF
+   51    | ID
+   52    | app
+   53    | NUM
+   54    | NOT exp
+   55    | exp INF exp
+   56    | exp SUP exp
+   57    | exp EQUAL exp
+   58    | exp DIFF exp
+   59    | exp AND exp
+   60    | exp OR exp
+
+   61 app: ID PO args PF
+
+   62 args: arglist
+   63     | ε
+
+   64 arglist: exp VIR arglist
+   65        | exp
+
+
+Terminaux, suivis des règles où ils apparaissent
+
+    $end (0) 0
+    error (256)
+    NUM <att> (258) 53
+    TINT (259) 19
+    ID <att> (260) 5 6 7 8 9 10 33 51 61
+    AO (261) 12 31
+    AF (262) 12 32
+    PO (263) 5 6 35 39 43 50 61
+    PF (264) 5 6 35 39 43 50 61
+    PV (265) 16 23
+    VIR (266) 11 64
+    RETURN (267) 34 35
+    VOID (268) 20
+    EQ (269) 33
+    IF <att> (270) 40
+    ELSE <att> (271) 41
+    WHILE <att> (272) 44
+    AND <att> (273) 59
+    OR <att> (274) 60
+    NOT <att> (275) 54
+    DIFF <att> (276) 58
+    EQUAL <att> (277) 57
+    SUP <att> (278) 56
+    INF <att> (279) 55
+    PLUS (280) 46
+    MOINS (281) 45 47
+    STAR (282) 48
+    DIV (283) 49
+    DOT (284)
+    ARR (285)
+    UNA (286)
+
+
+Non-terminaux, suivis des règles où ils apparaissent
+
+    $accept (32)
+        à gauche: 0
+    prog (33)
+        à gauche: 1
+        à droite: 0
+    func_list (34)
+        à gauche: 2 3
+        à droite: 1 2
+    fun (35)
+        à gauche: 4
+        à droite: 2 3
+    fun_head (36)
+        à gauche: 5 6
+        à droite: 4
+    params (37)
+        à gauche: 7 8
+        à droite: 6 7
+    vlist (38)
+        à gauche: 9 10
+        à droite: 9 17
+    vir (39)
+        à gauche: 11
+        à droite: 7 9
+    fun_body (40)
+        à gauche: 12
+        à droite: 4
+    block (41)
+        à gauche: 13
+        à droite: 12 25
+    decl_list (42)
+        à gauche: 14 15
+        à droite: 13 14
+    decl (43)
+        à gauche: 16
+        à droite: 14
+    var_decl (44)
+        à gauche: 17
+        à droite: 16
+    type (45)
+        à gauche: 18
+        à droite: 4 7 8 17
+    typename <att> (46)
+        à gauche: 19 20
+        à droite: 18
+    inst_list (47)
+        à gauche: 21 22
+        à droite: 13 21
+    pv (48)
+        à gauche: 23
+        à droite: 24 26 27 30
+    inst (49)
+        à gauche: 24 25 26 27 28 29 30
+        à droite: 21 22 36 37 42
+    ao (50)
+        à gauche: 31
+        à droite: 25
+    af (51)
+        à gauche: 32
+        à droite: 25
+    aff (52)
+        à gauche: 33
+        à droite: 26
+    ret (53)
+        à gauche: 34 35
+        à droite: 27
+    cond (54)
+        à gauche: 36
+        à droite: 28
+    elsop (55)
+        à gauche: 37 38
+        à droite: 36
+    bool_cond (56)
+        à gauche: 39
+        à droite: 36
+    if (57)
+        à gauche: 40
+        à droite: 36
+    else (58)
+        à gauche: 41
+        à droite: 37
+    loop (59)
+        à gauche: 42
+        à droite: 29
+    while_cond (60)
+        à gauche: 43
+        à droite: 42
+    while (61)
+        à gauche: 44
+        à droite: 42
+    exp <att> (62)
+        à gauche: 45 46 47 48 49 50 51 52 53 54 55 56 57 58 59 60
+        à droite: 24 33 34 39 43 45 46 47 48 49 50 54 55 56 57 58 59 60 64 65
+    app (63)
+        à gauche: 61
+        à droite: 52
+    args (64)
+        à gauche: 62 63
+        à droite: 61
+    arglist (65)
+        à gauche: 64 65
+        à droite: 62 64
+
+
+État 0
+
+    0 $accept: • prog $end
+
+    TINT  décalage et aller à l'état 1
+    VOID  décalage et aller à l'état 2
+
+    prog       aller à l'état 3
+    func_list  aller à l'état 4
+    fun        aller à l'état 5
+    type       aller à l'état 6
+    typename   aller à l'état 7
+
+
+État 1
+
+   19 typename: TINT •
+
+    $défaut  réduction par utilisation de la règle 19 (typename)
+
+
+État 2
+
+   20 typename: VOID •
+
+    $défaut  réduction par utilisation de la règle 20 (typename)
+
+
+État 3
+
+    0 $accept: prog • $end
+
+    $end  décalage et aller à l'état 8
+
+
+État 4
+
+    1 prog: func_list •
+    2 func_list: func_list • fun
+
+    TINT  décalage et aller à l'état 1
+    VOID  décalage et aller à l'état 2
+
+    $défaut  réduction par utilisation de la règle 1 (prog)
+
+    fun       aller à l'état 9
+    type      aller à l'état 6
+    typename  aller à l'état 7
+
+
+État 5
+
+    3 func_list: fun •
+
+    $défaut  réduction par utilisation de la règle 3 (func_list)
+
+
+État 6
+
+    4 fun: type • fun_head fun_body
+
+    ID  décalage et aller à l'état 10
+
+    fun_head  aller à l'état 11
+
+
+État 7
+
+   18 type: typename •
+
+    $défaut  réduction par utilisation de la règle 18 (type)
+
+
+État 8
+
+    0 $accept: prog $end •
+
+    $défaut  accepter
+
+
+État 9
+
+    2 func_list: func_list fun •
+
+    $défaut  réduction par utilisation de la règle 2 (func_list)
+
+
+État 10
+
+    5 fun_head: ID • PO PF
+    6         | ID • PO params PF
+
+    PO  décalage et aller à l'état 12
+
+
+État 11
+
+    4 fun: type fun_head • fun_body
+
+    AO  décalage et aller à l'état 13
+
+    fun_body  aller à l'état 14
+
+
+État 12
+
+    5 fun_head: ID PO • PF
+    6         | ID PO • params PF
+
+    TINT  décalage et aller à l'état 1
+    PF    décalage et aller à l'état 15
+    VOID  décalage et aller à l'état 2
+
+    params    aller à l'état 16
+    type      aller à l'état 17
+    typename  aller à l'état 7
+
+
+État 13
+
+   12 fun_body: AO • block AF
+
+    $défaut  réduction par utilisation de la règle 15 (decl_list)
+
+    block      aller à l'état 18
+    decl_list  aller à l'état 19
+
+
+État 14
+
+    4 fun: type fun_head fun_body •
+
+    $défaut  réduction par utilisation de la règle 4 (fun)
+
+
+État 15
+
+    5 fun_head: ID PO PF •
+
+    $défaut  réduction par utilisation de la règle 5 (fun_head)
+
+
+État 16
+
+    6 fun_head: ID PO params • PF
+
+    PF  décalage et aller à l'état 20
+
+
+État 17
+
+    7 params: type • ID vir params
+    8       | type • ID
+
+    ID  décalage et aller à l'état 21
+
+
+État 18
+
+   12 fun_body: AO block • AF
+
+    AF  décalage et aller à l'état 22
+
+
+État 19
+
+   13 block: decl_list • inst_list
+   14 decl_list: decl_list • decl
+
+    NUM     décalage et aller à l'état 23
+    TINT    décalage et aller à l'état 1
+    ID      décalage et aller à l'état 24
+    AO      décalage et aller à l'état 25
+    PO      décalage et aller à l'état 26
+    PV      décalage et aller à l'état 27
+    RETURN  décalage et aller à l'état 28
+    VOID    décalage et aller à l'état 2
+    IF      décalage et aller à l'état 29
+    WHILE   décalage et aller à l'état 30
+    NOT     décalage et aller à l'état 31
+    MOINS   décalage et aller à l'état 32
+
+    decl       aller à l'état 33
+    var_decl   aller à l'état 34
+    type       aller à l'état 35
+    typename   aller à l'état 7
+    inst_list  aller à l'état 36
+    pv         aller à l'état 37
+    inst       aller à l'état 38
+    ao         aller à l'état 39
+    aff        aller à l'état 40
+    ret        aller à l'état 41
+    cond       aller à l'état 42
+    if         aller à l'état 43
+    loop       aller à l'état 44
+    while      aller à l'état 45
+    exp        aller à l'état 46
+    app        aller à l'état 47
+
+
+État 20
+
+    6 fun_head: ID PO params PF •
+
+    $défaut  réduction par utilisation de la règle 6 (fun_head)
+
+
+État 21
+
+    7 params: type ID • vir params
+    8       | type ID •
+
+    VIR  décalage et aller à l'état 48
+
+    $défaut  réduction par utilisation de la règle 8 (params)
+
+    vir  aller à l'état 49
+
+
+État 22
+
+   12 fun_body: AO block AF •
+
+    $défaut  réduction par utilisation de la règle 12 (fun_body)
+
+
+État 23
+
+   53 exp: NUM •
+
+    $défaut  réduction par utilisation de la règle 53 (exp)
+
+
+État 24
+
+   33 aff: ID • EQ exp
+   51 exp: ID •
+   61 app: ID • PO args PF
+
+    PO  décalage et aller à l'état 50
+    EQ  décalage et aller à l'état 51
+
+    $défaut  réduction par utilisation de la règle 51 (exp)
+
+
+État 25
+
+   31 ao: AO •
+
+    $défaut  réduction par utilisation de la règle 31 (ao)
+
+
+État 26
+
+   50 exp: PO • exp PF
+
+    NUM    décalage et aller à l'état 23
+    ID     décalage et aller à l'état 52
+    PO     décalage et aller à l'état 26
+    NOT    décalage et aller à l'état 31
+    MOINS  décalage et aller à l'état 32
+
+    exp  aller à l'état 53
+    app  aller à l'état 47
+
+
+État 27
+
+   23 pv: PV •
+
+    $défaut  réduction par utilisation de la règle 23 (pv)
+
+
+État 28
+
+   34 ret: RETURN • exp
+   35    | RETURN • PO PF
+
+    NUM    décalage et aller à l'état 23
+    ID     décalage et aller à l'état 52
+    PO     décalage et aller à l'état 54
+    NOT    décalage et aller à l'état 31
+    MOINS  décalage et aller à l'état 32
+
+    exp  aller à l'état 55
+    app  aller à l'état 47
+
+
+État 29
+
+   40 if: IF •
+
+    $défaut  réduction par utilisation de la règle 40 (if)
+
+
+État 30
+
+   44 while: WHILE •
+
+    $défaut  réduction par utilisation de la règle 44 (while)
+
+
+État 31
+
+   54 exp: NOT • exp
+
+    NUM    décalage et aller à l'état 23
+    ID     décalage et aller à l'état 52
+    PO     décalage et aller à l'état 26
+    NOT    décalage et aller à l'état 31
+    MOINS  décalage et aller à l'état 32
+
+    exp  aller à l'état 56
+    app  aller à l'état 47
+
+
+État 32
+
+   45 exp: MOINS • exp
+
+    NUM    décalage et aller à l'état 23
+    ID     décalage et aller à l'état 52
+    PO     décalage et aller à l'état 26
+    NOT    décalage et aller à l'état 31
+    MOINS  décalage et aller à l'état 32
+
+    exp  aller à l'état 57
+    app  aller à l'état 47
+
+
+État 33
+
+   14 decl_list: decl_list decl •
+
+    $défaut  réduction par utilisation de la règle 14 (decl_list)
+
+
+État 34
+
+   16 decl: var_decl • PV
+
+    PV  décalage et aller à l'état 58
+
+
+État 35
+
+   17 var_decl: type • vlist
+
+    ID  décalage et aller à l'état 59
+
+    vlist  aller à l'état 60
+
+
+État 36
+
+   13 block: decl_list inst_list •
+
+    $défaut  réduction par utilisation de la règle 13 (block)
+
+
+État 37
+
+   30 inst: pv •
+
+    $défaut  réduction par utilisation de la règle 30 (inst)
+
+
+État 38
+
+   21 inst_list: inst • inst_list
+   22          | inst •
+
+    NUM     décalage et aller à l'état 23
+    ID      décalage et aller à l'état 24
+    AO      décalage et aller à l'état 25
+    PO      décalage et aller à l'état 26
+    PV      décalage et aller à l'état 27
+    RETURN  décalage et aller à l'état 28
+    IF      décalage et aller à l'état 29
+    WHILE   décalage et aller à l'état 30
+    NOT     décalage et aller à l'état 31
+    MOINS   décalage et aller à l'état 32
+
+    $défaut  réduction par utilisation de la règle 22 (inst_list)
+
+    inst_list  aller à l'état 61
+    pv         aller à l'état 37
+    inst       aller à l'état 38
+    ao         aller à l'état 39
+    aff        aller à l'état 40
+    ret        aller à l'état 41
+    cond       aller à l'état 42
+    if         aller à l'état 43
+    loop       aller à l'état 44
+    while      aller à l'état 45
+    exp        aller à l'état 46
+    app        aller à l'état 47
+
+
+État 39
+
+   25 inst: ao • block af
+
+    $défaut  réduction par utilisation de la règle 15 (decl_list)
+
+    block      aller à l'état 62
+    decl_list  aller à l'état 19
+
+
+État 40
+
+   26 inst: aff • pv
+
+    PV  décalage et aller à l'état 27
+
+    pv  aller à l'état 63
+
+
+État 41
+
+   27 inst: ret • pv
+
+    PV  décalage et aller à l'état 27
+
+    pv  aller à l'état 64
+
+
+État 42
+
+   28 inst: cond •
+
+    $défaut  réduction par utilisation de la règle 28 (inst)
+
+
+État 43
+
+   36 cond: if • bool_cond inst elsop
+
+    PO  décalage et aller à l'état 65
+
+    bool_cond  aller à l'état 66
+
+
+État 44
+
+   29 inst: loop •
+
+    $défaut  réduction par utilisation de la règle 29 (inst)
+
+
+État 45
+
+   42 loop: while • while_cond inst
+
+    PO  décalage et aller à l'état 67
+
+    while_cond  aller à l'état 68
+
+
+État 46
+
+   24 inst: exp • pv
+   46 exp: exp • PLUS exp
+   47    | exp • MOINS exp
+   48    | exp • STAR exp
+   49    | exp • DIV exp
+   55    | exp • INF exp
+   56    | exp • SUP exp
+   57    | exp • EQUAL exp
+   58    | exp • DIFF exp
+   59    | exp • AND exp
+   60    | exp • OR exp
+
+    PV     décalage et aller à l'état 27
+    AND    décalage et aller à l'état 69
+    OR     décalage et aller à l'état 70
+    DIFF   décalage et aller à l'état 71
+    EQUAL  décalage et aller à l'état 72
+    SUP    décalage et aller à l'état 73
+    INF    décalage et aller à l'état 74
+    PLUS   décalage et aller à l'état 75
+    MOINS  décalage et aller à l'état 76
+    STAR   décalage et aller à l'état 77
+    DIV    décalage et aller à l'état 78
+
+    pv  aller à l'état 79
+
+
+État 47
+
+   52 exp: app •
+
+    $défaut  réduction par utilisation de la règle 52 (exp)
+
+
+État 48
+
+   11 vir: VIR •
+
+    $défaut  réduction par utilisation de la règle 11 (vir)
+
+
+État 49
+
+    7 params: type ID vir • params
+
+    TINT  décalage et aller à l'état 1
+    VOID  décalage et aller à l'état 2
+
+    params    aller à l'état 80
+    type      aller à l'état 17
+    typename  aller à l'état 7
+
+
+État 50
+
+   61 app: ID PO • args PF
+
+    NUM    décalage et aller à l'état 23
+    ID     décalage et aller à l'état 52
+    PO     décalage et aller à l'état 26
+    NOT    décalage et aller à l'état 31
+    MOINS  décalage et aller à l'état 32
+
+    $défaut  réduction par utilisation de la règle 63 (args)
+
+    exp      aller à l'état 81
+    app      aller à l'état 47
+    args     aller à l'état 82
+    arglist  aller à l'état 83
+
+
+État 51
+
+   33 aff: ID EQ • exp
+
+    NUM    décalage et aller à l'état 23
+    ID     décalage et aller à l'état 52
+    PO     décalage et aller à l'état 26
+    NOT    décalage et aller à l'état 31
+    MOINS  décalage et aller à l'état 32
+
+    exp  aller à l'état 84
+    app  aller à l'état 47
+
+
+État 52
+
+   51 exp: ID •
+   61 app: ID • PO args PF
+
+    PO  décalage et aller à l'état 50
+
+    $défaut  réduction par utilisation de la règle 51 (exp)
+
+
+État 53
+
+   46 exp: exp • PLUS exp
+   47    | exp • MOINS exp
+   48    | exp • STAR exp
+   49    | exp • DIV exp
+   50    | PO exp • PF
+   55    | exp • INF exp
+   56    | exp • SUP exp
+   57    | exp • EQUAL exp
+   58    | exp • DIFF exp
+   59    | exp • AND exp
+   60    | exp • OR exp
+
+    PF     décalage et aller à l'état 85
+    AND    décalage et aller à l'état 69
+    OR     décalage et aller à l'état 70
+    DIFF   décalage et aller à l'état 71
+    EQUAL  décalage et aller à l'état 72
+    SUP    décalage et aller à l'état 73
+    INF    décalage et aller à l'état 74
+    PLUS   décalage et aller à l'état 75
+    MOINS  décalage et aller à l'état 76
+    STAR   décalage et aller à l'état 77
+    DIV    décalage et aller à l'état 78
+
+
+État 54
+
+   35 ret: RETURN PO • PF
+   50 exp: PO • exp PF
+
+    NUM    décalage et aller à l'état 23
+    ID     décalage et aller à l'état 52
+    PO     décalage et aller à l'état 26
+    PF     décalage et aller à l'état 86
+    NOT    décalage et aller à l'état 31
+    MOINS  décalage et aller à l'état 32
+
+    exp  aller à l'état 53
+    app  aller à l'état 47
+
+
+État 55
+
+   34 ret: RETURN exp •
+   46 exp: exp • PLUS exp
+   47    | exp • MOINS exp
+   48    | exp • STAR exp
+   49    | exp • DIV exp
+   55    | exp • INF exp
+   56    | exp • SUP exp
+   57    | exp • EQUAL exp
+   58    | exp • DIFF exp
+   59    | exp • AND exp
+   60    | exp • OR exp
+
+    AND    décalage et aller à l'état 69
+    OR     décalage et aller à l'état 70
+    DIFF   décalage et aller à l'état 71
+    EQUAL  décalage et aller à l'état 72
+    SUP    décalage et aller à l'état 73
+    INF    décalage et aller à l'état 74
+    PLUS   décalage et aller à l'état 75
+    MOINS  décalage et aller à l'état 76
+    STAR   décalage et aller à l'état 77
+    DIV    décalage et aller à l'état 78
+
+    $défaut  réduction par utilisation de la règle 34 (ret)
+
+
+État 56
+
+   46 exp: exp • PLUS exp
+   47    | exp • MOINS exp
+   48    | exp • STAR exp
+   49    | exp • DIV exp
+   54    | NOT exp •
+   55    | exp • INF exp
+   56    | exp • SUP exp
+   57    | exp • EQUAL exp
+   58    | exp • DIFF exp
+   59    | exp • AND exp
+   60    | exp • OR exp
+
+    $défaut  réduction par utilisation de la règle 54 (exp)
+
+
+État 57
+
+   45 exp: MOINS exp •
+   46    | exp • PLUS exp
+   47    | exp • MOINS exp
+   48    | exp • STAR exp
+   49    | exp • DIV exp
+   55    | exp • INF exp
+   56    | exp • SUP exp
+   57    | exp • EQUAL exp
+   58    | exp • DIFF exp
+   59    | exp • AND exp
+   60    | exp • OR exp
+
+    $défaut  réduction par utilisation de la règle 45 (exp)
+
+
+État 58
+
+   16 decl: var_decl PV •
+
+    $défaut  réduction par utilisation de la règle 16 (decl)
+
+
+État 59
+
+   10 vlist: ID •
+
+    $défaut  réduction par utilisation de la règle 10 (vlist)
+
+
+État 60
+
+    9 vlist: vlist • vir ID
+   17 var_decl: type vlist •
+
+    VIR  décalage et aller à l'état 48
+
+    $défaut  réduction par utilisation de la règle 17 (var_decl)
+
+    vir  aller à l'état 87
+
+
+État 61
+
+   21 inst_list: inst inst_list •
+
+    $défaut  réduction par utilisation de la règle 21 (inst_list)
+
+
+État 62
+
+   25 inst: ao block • af
+
+    AF  décalage et aller à l'état 88
+
+    af  aller à l'état 89
+
+
+État 63
+
+   26 inst: aff pv •
+
+    $défaut  réduction par utilisation de la règle 26 (inst)
+
+
+État 64
+
+   27 inst: ret pv •
+
+    $défaut  réduction par utilisation de la règle 27 (inst)
+
+
+État 65
+
+   39 bool_cond: PO • exp PF
+
+    NUM    décalage et aller à l'état 23
+    ID     décalage et aller à l'état 52
+    PO     décalage et aller à l'état 26
+    NOT    décalage et aller à l'état 31
+    MOINS  décalage et aller à l'état 32
+
+    exp  aller à l'état 90
+    app  aller à l'état 47
+
+
+État 66
+
+   36 cond: if bool_cond • inst elsop
+
+    NUM     décalage et aller à l'état 23
+    ID      décalage et aller à l'état 24
+    AO      décalage et aller à l'état 25
+    PO      décalage et aller à l'état 26
+    PV      décalage et aller à l'état 27
+    RETURN  décalage et aller à l'état 28
+    IF      décalage et aller à l'état 29
+    WHILE   décalage et aller à l'état 30
+    NOT     décalage et aller à l'état 31
+    MOINS   décalage et aller à l'état 32
+
+    pv     aller à l'état 37
+    inst   aller à l'état 91
+    ao     aller à l'état 39
+    aff    aller à l'état 40
+    ret    aller à l'état 41
+    cond   aller à l'état 42
+    if     aller à l'état 43
+    loop   aller à l'état 44
+    while  aller à l'état 45
+    exp    aller à l'état 46
+    app    aller à l'état 47
+
+
+État 67
+
+   43 while_cond: PO • exp PF
+
+    NUM    décalage et aller à l'état 23
+    ID     décalage et aller à l'état 52
+    PO     décalage et aller à l'état 26
+    NOT    décalage et aller à l'état 31
+    MOINS  décalage et aller à l'état 32
+
+    exp  aller à l'état 92
+    app  aller à l'état 47
+
+
+État 68
+
+   42 loop: while while_cond • inst
+
+    NUM     décalage et aller à l'état 23
+    ID      décalage et aller à l'état 24
+    AO      décalage et aller à l'état 25
+    PO      décalage et aller à l'état 26
+    PV      décalage et aller à l'état 27
+    RETURN  décalage et aller à l'état 28
+    IF      décalage et aller à l'état 29
+    WHILE   décalage et aller à l'état 30
+    NOT     décalage et aller à l'état 31
+    MOINS   décalage et aller à l'état 32
+
+    pv     aller à l'état 37
+    inst   aller à l'état 93
+    ao     aller à l'état 39
+    aff    aller à l'état 40
+    ret    aller à l'état 41
+    cond   aller à l'état 42
+    if     aller à l'état 43
+    loop   aller à l'état 44
+    while  aller à l'état 45
+    exp    aller à l'état 46
+    app    aller à l'état 47
+
+
+État 69
+
+   59 exp: exp AND • exp
+
+    NUM    décalage et aller à l'état 23
+    ID     décalage et aller à l'état 52
+    PO     décalage et aller à l'état 26
+    NOT    décalage et aller à l'état 31
+    MOINS  décalage et aller à l'état 32
+
+    exp  aller à l'état 94
+    app  aller à l'état 47
+
+
+État 70
+
+   60 exp: exp OR • exp
+
+    NUM    décalage et aller à l'état 23
+    ID     décalage et aller à l'état 52
+    PO     décalage et aller à l'état 26
+    NOT    décalage et aller à l'état 31
+    MOINS  décalage et aller à l'état 32
+
+    exp  aller à l'état 95
+    app  aller à l'état 47
+
+
+État 71
+
+   58 exp: exp DIFF • exp
+
+    NUM    décalage et aller à l'état 23
+    ID     décalage et aller à l'état 52
+    PO     décalage et aller à l'état 26
+    NOT    décalage et aller à l'état 31
+    MOINS  décalage et aller à l'état 32
+
+    exp  aller à l'état 96
+    app  aller à l'état 47
+
+
+État 72
+
+   57 exp: exp EQUAL • exp
+
+    NUM    décalage et aller à l'état 23
+    ID     décalage et aller à l'état 52
+    PO     décalage et aller à l'état 26
+    NOT    décalage et aller à l'état 31
+    MOINS  décalage et aller à l'état 32
+
+    exp  aller à l'état 97
+    app  aller à l'état 47
+
+
+État 73
+
+   56 exp: exp SUP • exp
+
+    NUM    décalage et aller à l'état 23
+    ID     décalage et aller à l'état 52
+    PO     décalage et aller à l'état 26
+    NOT    décalage et aller à l'état 31
+    MOINS  décalage et aller à l'état 32
+
+    exp  aller à l'état 98
+    app  aller à l'état 47
+
+
+État 74
+
+   55 exp: exp INF • exp
+
+    NUM    décalage et aller à l'état 23
+    ID     décalage et aller à l'état 52
+    PO     décalage et aller à l'état 26
+    NOT    décalage et aller à l'état 31
+    MOINS  décalage et aller à l'état 32
+
+    exp  aller à l'état 99
+    app  aller à l'état 47
+
+
+État 75
+
+   46 exp: exp PLUS • exp
+
+    NUM    décalage et aller à l'état 23
+    ID     décalage et aller à l'état 52
+    PO     décalage et aller à l'état 26
+    NOT    décalage et aller à l'état 31
+    MOINS  décalage et aller à l'état 32
+
+    exp  aller à l'état 100
+    app  aller à l'état 47
+
+
+État 76
+
+   47 exp: exp MOINS • exp
+
+    NUM    décalage et aller à l'état 23
+    ID     décalage et aller à l'état 52
+    PO     décalage et aller à l'état 26
+    NOT    décalage et aller à l'état 31
+    MOINS  décalage et aller à l'état 32
+
+    exp  aller à l'état 101
+    app  aller à l'état 47
+
+
+État 77
+
+   48 exp: exp STAR • exp
+
+    NUM    décalage et aller à l'état 23
+    ID     décalage et aller à l'état 52
+    PO     décalage et aller à l'état 26
+    NOT    décalage et aller à l'état 31
+    MOINS  décalage et aller à l'état 32
+
+    exp  aller à l'état 102
+    app  aller à l'état 47
+
+
+État 78
+
+   49 exp: exp DIV • exp
+
+    NUM    décalage et aller à l'état 23
+    ID     décalage et aller à l'état 52
+    PO     décalage et aller à l'état 26
+    NOT    décalage et aller à l'état 31
+    MOINS  décalage et aller à l'état 32
+
+    exp  aller à l'état 103
+    app  aller à l'état 47
+
+
+État 79
+
+   24 inst: exp pv •
+
+    $défaut  réduction par utilisation de la règle 24 (inst)
+
+
+État 80
+
+    7 params: type ID vir params •
+
+    $défaut  réduction par utilisation de la règle 7 (params)
+
+
+État 81
+
+   46 exp: exp • PLUS exp
+   47    | exp • MOINS exp
+   48    | exp • STAR exp
+   49    | exp • DIV exp
+   55    | exp • INF exp
+   56    | exp • SUP exp
+   57    | exp • EQUAL exp
+   58    | exp • DIFF exp
+   59    | exp • AND exp
+   60    | exp • OR exp
+   64 arglist: exp • VIR arglist
+   65        | exp •
+
+    VIR    décalage et aller à l'état 104
+    AND    décalage et aller à l'état 69
+    OR     décalage et aller à l'état 70
+    DIFF   décalage et aller à l'état 71
+    EQUAL  décalage et aller à l'état 72
+    SUP    décalage et aller à l'état 73
+    INF    décalage et aller à l'état 74
+    PLUS   décalage et aller à l'état 75
+    MOINS  décalage et aller à l'état 76
+    STAR   décalage et aller à l'état 77
+    DIV    décalage et aller à l'état 78
+
+    $défaut  réduction par utilisation de la règle 65 (arglist)
+
+
+État 82
+
+   61 app: ID PO args • PF
+
+    PF  décalage et aller à l'état 105
+
+
+État 83
+
+   62 args: arglist •
+
+    $défaut  réduction par utilisation de la règle 62 (args)
+
+
+État 84
+
+   33 aff: ID EQ exp •
+   46 exp: exp • PLUS exp
+   47    | exp • MOINS exp
+   48    | exp • STAR exp
+   49    | exp • DIV exp
+   55    | exp • INF exp
+   56    | exp • SUP exp
+   57    | exp • EQUAL exp
+   58    | exp • DIFF exp
+   59    | exp • AND exp
+   60    | exp • OR exp
+
+    AND    décalage et aller à l'état 69
+    OR     décalage et aller à l'état 70
+    DIFF   décalage et aller à l'état 71
+    EQUAL  décalage et aller à l'état 72
+    SUP    décalage et aller à l'état 73
+    INF    décalage et aller à l'état 74
+    PLUS   décalage et aller à l'état 75
+    MOINS  décalage et aller à l'état 76
+    STAR   décalage et aller à l'état 77
+    DIV    décalage et aller à l'état 78
+
+    $défaut  réduction par utilisation de la règle 33 (aff)
+
+
+État 85
+
+   50 exp: PO exp PF •
+
+    $défaut  réduction par utilisation de la règle 50 (exp)
+
+
+État 86
+
+   35 ret: RETURN PO PF •
+
+    $défaut  réduction par utilisation de la règle 35 (ret)
+
+
+État 87
+
+    9 vlist: vlist vir • ID
+
+    ID  décalage et aller à l'état 106
+
+
+État 88
+
+   32 af: AF •
+
+    $défaut  réduction par utilisation de la règle 32 (af)
+
+
+État 89
+
+   25 inst: ao block af •
+
+    $défaut  réduction par utilisation de la règle 25 (inst)
+
+
+État 90
+
+   39 bool_cond: PO exp • PF
+   46 exp: exp • PLUS exp
+   47    | exp • MOINS exp
+   48    | exp • STAR exp
+   49    | exp • DIV exp
+   55    | exp • INF exp
+   56    | exp • SUP exp
+   57    | exp • EQUAL exp
+   58    | exp • DIFF exp
+   59    | exp • AND exp
+   60    | exp • OR exp
+
+    PF     décalage et aller à l'état 107
+    AND    décalage et aller à l'état 69
+    OR     décalage et aller à l'état 70
+    DIFF   décalage et aller à l'état 71
+    EQUAL  décalage et aller à l'état 72
+    SUP    décalage et aller à l'état 73
+    INF    décalage et aller à l'état 74
+    PLUS   décalage et aller à l'état 75
+    MOINS  décalage et aller à l'état 76
+    STAR   décalage et aller à l'état 77
+    DIV    décalage et aller à l'état 78
+
+
+État 91
+
+   36 cond: if bool_cond inst • elsop
+
+    ELSE  décalage et aller à l'état 108
+
+    ELSE     [réduction par utilisation de la règle 38 (elsop)]
+    $défaut  réduction par utilisation de la règle 38 (elsop)
+
+    elsop  aller à l'état 109
+    else   aller à l'état 110
+
+
+État 92
+
+   43 while_cond: PO exp • PF
+   46 exp: exp • PLUS exp
+   47    | exp • MOINS exp
+   48    | exp • STAR exp
+   49    | exp • DIV exp
+   55    | exp • INF exp
+   56    | exp • SUP exp
+   57    | exp • EQUAL exp
+   58    | exp • DIFF exp
+   59    | exp • AND exp
+   60    | exp • OR exp
+
+    PF     décalage et aller à l'état 111
+    AND    décalage et aller à l'état 69
+    OR     décalage et aller à l'état 70
+    DIFF   décalage et aller à l'état 71
+    EQUAL  décalage et aller à l'état 72
+    SUP    décalage et aller à l'état 73
+    INF    décalage et aller à l'état 74
+    PLUS   décalage et aller à l'état 75
+    MOINS  décalage et aller à l'état 76
+    STAR   décalage et aller à l'état 77
+    DIV    décalage et aller à l'état 78
+
+
+État 93
+
+   42 loop: while while_cond inst •
+
+    $défaut  réduction par utilisation de la règle 42 (loop)
+
+
+État 94
+
+   46 exp: exp • PLUS exp
+   47    | exp • MOINS exp
+   48    | exp • STAR exp
+   49    | exp • DIV exp
+   55    | exp • INF exp
+   56    | exp • SUP exp
+   57    | exp • EQUAL exp
+   58    | exp • DIFF exp
+   59    | exp • AND exp
+   59    | exp AND exp •
+   60    | exp • OR exp
+
+    DIFF   décalage et aller à l'état 71
+    EQUAL  décalage et aller à l'état 72
+    SUP    décalage et aller à l'état 73
+    INF    décalage et aller à l'état 74
+    PLUS   décalage et aller à l'état 75
+    MOINS  décalage et aller à l'état 76
+    STAR   décalage et aller à l'état 77
+    DIV    décalage et aller à l'état 78
+
+    $défaut  réduction par utilisation de la règle 59 (exp)
+
+
+État 95
+
+   46 exp: exp • PLUS exp
+   47    | exp • MOINS exp
+   48    | exp • STAR exp
+   49    | exp • DIV exp
+   55    | exp • INF exp
+   56    | exp • SUP exp
+   57    | exp • EQUAL exp
+   58    | exp • DIFF exp
+   59    | exp • AND exp
+   60    | exp • OR exp
+   60    | exp OR exp •
+
+    AND    décalage et aller à l'état 69
+    DIFF   décalage et aller à l'état 71
+    EQUAL  décalage et aller à l'état 72
+    SUP    décalage et aller à l'état 73
+    INF    décalage et aller à l'état 74
+    PLUS   décalage et aller à l'état 75
+    MOINS  décalage et aller à l'état 76
+    STAR   décalage et aller à l'état 77
+    DIV    décalage et aller à l'état 78
+
+    $défaut  réduction par utilisation de la règle 60 (exp)
+
+
+État 96
+
+   46 exp: exp • PLUS exp
+   47    | exp • MOINS exp
+   48    | exp • STAR exp
+   49    | exp • DIV exp
+   55    | exp • INF exp
+   56    | exp • SUP exp
+   57    | exp • EQUAL exp
+   58    | exp • DIFF exp
+   58    | exp DIFF exp •
+   59    | exp • AND exp
+   60    | exp • OR exp
+
+    PLUS   décalage et aller à l'état 75
+    MOINS  décalage et aller à l'état 76
+    STAR   décalage et aller à l'état 77
+    DIV    décalage et aller à l'état 78
+
+    $défaut  réduction par utilisation de la règle 58 (exp)
+
+
+État 97
+
+   46 exp: exp • PLUS exp
+   47    | exp • MOINS exp
+   48    | exp • STAR exp
+   49    | exp • DIV exp
+   55    | exp • INF exp
+   56    | exp • SUP exp
+   57    | exp • EQUAL exp
+   57    | exp EQUAL exp •
+   58    | exp • DIFF exp
+   59    | exp • AND exp
+   60    | exp • OR exp
+
+    PLUS   décalage et aller à l'état 75
+    MOINS  décalage et aller à l'état 76
+    STAR   décalage et aller à l'état 77
+    DIV    décalage et aller à l'état 78
+
+    $défaut  réduction par utilisation de la règle 57 (exp)
+
+
+État 98
+
+   46 exp: exp • PLUS exp
+   47    | exp • MOINS exp
+   48    | exp • STAR exp
+   49    | exp • DIV exp
+   55    | exp • INF exp
+   56    | exp • SUP exp
+   56    | exp SUP exp •
+   57    | exp • EQUAL exp
+   58    | exp • DIFF exp
+   59    | exp • AND exp
+   60    | exp • OR exp
+
+    PLUS   décalage et aller à l'état 75
+    MOINS  décalage et aller à l'état 76
+    STAR   décalage et aller à l'état 77
+    DIV    décalage et aller à l'état 78
+
+    $défaut  réduction par utilisation de la règle 56 (exp)
+
+
+État 99
+
+   46 exp: exp • PLUS exp
+   47    | exp • MOINS exp
+   48    | exp • STAR exp
+   49    | exp • DIV exp
+   55    | exp • INF exp
+   55    | exp INF exp •
+   56    | exp • SUP exp
+   57    | exp • EQUAL exp
+   58    | exp • DIFF exp
+   59    | exp • AND exp
+   60    | exp • OR exp
+
+    PLUS   décalage et aller à l'état 75
+    MOINS  décalage et aller à l'état 76
+    STAR   décalage et aller à l'état 77
+    DIV    décalage et aller à l'état 78
+
+    $défaut  réduction par utilisation de la règle 55 (exp)
+
+
+État 100
+
+   46 exp: exp • PLUS exp
+   46    | exp PLUS exp •
+   47    | exp • MOINS exp
+   48    | exp • STAR exp
+   49    | exp • DIV exp
+   55    | exp • INF exp
+   56    | exp • SUP exp
+   57    | exp • EQUAL exp
+   58    | exp • DIFF exp
+   59    | exp • AND exp
+   60    | exp • OR exp
+
+    STAR  décalage et aller à l'état 77
+    DIV   décalage et aller à l'état 78
+
+    $défaut  réduction par utilisation de la règle 46 (exp)
+
+
+État 101
+
+   46 exp: exp • PLUS exp
+   47    | exp • MOINS exp
+   47    | exp MOINS exp •
+   48    | exp • STAR exp
+   49    | exp • DIV exp
+   55    | exp • INF exp
+   56    | exp • SUP exp
+   57    | exp • EQUAL exp
+   58    | exp • DIFF exp
+   59    | exp • AND exp
+   60    | exp • OR exp
+
+    STAR  décalage et aller à l'état 77
+    DIV   décalage et aller à l'état 78
+
+    $défaut  réduction par utilisation de la règle 47 (exp)
+
+
+État 102
+
+   46 exp: exp • PLUS exp
+   47    | exp • MOINS exp
+   48    | exp • STAR exp
+   48    | exp STAR exp •
+   49    | exp • DIV exp
+   55    | exp • INF exp
+   56    | exp • SUP exp
+   57    | exp • EQUAL exp
+   58    | exp • DIFF exp
+   59    | exp • AND exp
+   60    | exp • OR exp
+
+    $défaut  réduction par utilisation de la règle 48 (exp)
+
+
+État 103
+
+   46 exp: exp • PLUS exp
+   47    | exp • MOINS exp
+   48    | exp • STAR exp
+   49    | exp • DIV exp
+   49    | exp DIV exp •
+   55    | exp • INF exp
+   56    | exp • SUP exp
+   57    | exp • EQUAL exp
+   58    | exp • DIFF exp
+   59    | exp • AND exp
+   60    | exp • OR exp
+
+    $défaut  réduction par utilisation de la règle 49 (exp)
+
+
+État 104
+
+   64 arglist: exp VIR • arglist
+
+    NUM    décalage et aller à l'état 23
+    ID     décalage et aller à l'état 52
+    PO     décalage et aller à l'état 26
+    NOT    décalage et aller à l'état 31
+    MOINS  décalage et aller à l'état 32
+
+    exp      aller à l'état 81
+    app      aller à l'état 47
+    arglist  aller à l'état 112
+
+
+État 105
+
+   61 app: ID PO args PF •
+
+    $défaut  réduction par utilisation de la règle 61 (app)
+
+
+État 106
+
+    9 vlist: vlist vir ID •
+
+    $défaut  réduction par utilisation de la règle 9 (vlist)
+
+
+État 107
+
+   39 bool_cond: PO exp PF •
+
+    $défaut  réduction par utilisation de la règle 39 (bool_cond)
+
+
+État 108
+
+   41 else: ELSE •
+
+    $défaut  réduction par utilisation de la règle 41 (else)
+
+
+État 109
+
+   36 cond: if bool_cond inst elsop •
+
+    $défaut  réduction par utilisation de la règle 36 (cond)
+
+
+État 110
+
+   37 elsop: else • inst
+
+    NUM     décalage et aller à l'état 23
+    ID      décalage et aller à l'état 24
+    AO      décalage et aller à l'état 25
+    PO      décalage et aller à l'état 26
+    PV      décalage et aller à l'état 27
+    RETURN  décalage et aller à l'état 28
+    IF      décalage et aller à l'état 29
+    WHILE   décalage et aller à l'état 30
+    NOT     décalage et aller à l'état 31
+    MOINS   décalage et aller à l'état 32
+
+    pv     aller à l'état 37
+    inst   aller à l'état 113
+    ao     aller à l'état 39
+    aff    aller à l'état 40
+    ret    aller à l'état 41
+    cond   aller à l'état 42
+    if     aller à l'état 43
+    loop   aller à l'état 44
+    while  aller à l'état 45
+    exp    aller à l'état 46
+    app    aller à l'état 47
+
+
+État 111
+
+   43 while_cond: PO exp PF •
+
+    $défaut  réduction par utilisation de la règle 43 (while_cond)
+
+
+État 112
+
+   64 arglist: exp VIR arglist •
+
+    $défaut  réduction par utilisation de la règle 64 (arglist)
+
+
+État 113
+
+   37 elsop: else inst •
+
+    $défaut  réduction par utilisation de la règle 37 (elsop)
