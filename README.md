@@ -1,2 +1,2 @@
 # MyC
-House made C Langage
+House made compiler in C Langage
