@@ -2,7 +2,7 @@
 House made compiler in C Langage
 
 
-I will 
+I will translate assap 
 # Projet de Compilation.
 
 
