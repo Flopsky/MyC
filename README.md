@@ -3,7 +3,7 @@ House made compiler in C Langage
 
 
 I will translate assap 
-# Projet de Compilation.
+# Projet de compilateur.
 
 
 
